@@ -1,0 +1,8 @@
+/* ─── Fix 1: hero ghost word "DIGITAL" — visible in light mode ──── */
+html.light .hero-ghost-word {
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.15) !important;
+  color: transparent !important;
+}
+html.light .hero-circuit {
+  opacity: 0.05 !important;
+}

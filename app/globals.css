@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+/* ─── DARK THEME ────────────────────────────────────────────────────── */
+:root {
+  --teal: #3a9ead;
+  --teal2: #4cbdcc;
+  --teal-glow: rgba(58, 158, 173, 0.18);
+  --bg: #080a0b;
+  --bg2: #0e1114;
+  --bg3: #141719;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-teal: rgba(58, 158, 173, 0.3);
+  --text: #c8cdd1;
+  --muted: #7a8590;
+  --white: #f0f2f4;
+  /* Ghost word stroke color */
+  --ghost-stroke: rgba(255, 255, 255, 0.15);
+}
+
+html.light {
+  --teal: #2d8a99;
+  --teal2: #3aabba;
+  --teal-glow: rgba(45, 138, 153, 0.1);
+  --bg: #f4f4f0;
+  --bg2: #eaeae5;
+  --bg3: #e1e1db;
+  --line: rgba(0, 0, 0, 0.08);
+  --line-teal: rgba(45, 138, 153, 0.22);
+  --text: #3a3f44;
+  --muted: #5c6670;
+  --white: #111315;
+  /* Fix 1: ghost word visible in light mode */
+  --ghost-stroke: rgba(0, 0, 0, 0.13);
+}
+
+/* ─── BASE ──────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+body, nav, footer, section {
+  transition: background-color 0.35s ease, color 0.2s ease;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--teal); }
+
+/* ─── ANIMATIONS ────────────────────────────────────────────────────── */
+@keyframes up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── SCROLL REVEAL ─────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.on { opacity: 1; transform: translateY(0); }
+
+/* ─── HERO GHOST WORD (Fix 1) ───────────────────────────────────────── */
+/* Using CSS var so it automatically adapts to light/dark theme */
+.hero-ghost-word {
+  -webkit-text-stroke: 1px var(--ghost-stroke);
+  color: transparent;
+}
+
+/* ─── THEME TOGGLE ──────────────────────────────────────────────────── */
+.theme-toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: var(--bg3);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: inline-block;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--teal);
+  transition: transform 0.3s ease;
+}
+html.light .theme-toggle::after {
+  transform: translateX(20px);
+}
+
+/* ─── LIGHT MODE EXTRAS ─────────────────────────────────────────────── */
+/* Hero circuit art — subtle on light */
+html.light .hero-circuit {
+  opacity: 0.05 !important;
+}
+/* Service/work card hover on light */
+html.light .service-card:hover,
+html.light .work-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* ─── MOBILE ≤768px ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  body { cursor: auto; }
+  .hero-section {
+    min-height: auto !important;
+    padding-top: 7rem !important;
+    padding-bottom: 4rem !important;
+    justify-content: flex-start !important;
+  }
+  .hero-cta-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.8rem !important;
+  }
+  .hero-cta-row a { text-align: center !important; justify-content: center !important; }
+  .section-header {
+    flex-direction: column !important;
+    gap: 1.2rem !important;
+    margin-bottom: 2.5rem !important;
+  }
+  .section-header p { max-width: 100% !important; padding-top: 0 !important; }
+  .service-grid,
+  .work-grid,
+  .pick-grid,
+  .contact-channels { grid-template-columns: 1fr !important; }
+  .studio-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+    padding: 5rem 6vw !important;
+  }
+  .services-section { padding: 5rem 6vw !important; }
+  .work-section     { padding: 0 6vw 5rem !important; }
+  .contact-section  { padding: 5rem 6vw !important; }
+  .work-card-inner-featured { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .footer-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+  .footer-cta {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1.5rem !important;
+    padding: 2.5rem 6vw !important;
+  }
+  .footer-cta a { text-align: center !important; justify-content: center !important; width: 100% !important; }
+  .theme-toggle-label { display: none !important; }
+}
+
+/* ─── TABLET 769–1024px ─────────────────────────────────────────────── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .service-grid     { grid-template-columns: repeat(2, 1fr) !important; }
+  .work-grid        { grid-template-columns: 1fr !important; }
+  .footer-grid      { grid-template-columns: 1fr 1fr !important; gap: 3rem !important; }
+  .contact-channels { grid-template-columns: 1fr !important; }
+  .studio-grid      { gap: 4rem !important; }
+}
