@@ -70,7 +70,7 @@ export default function Footer() {
     // Array of objects to keep values and their specific links together
     items: [
       { label: '+92 320 3887279', link: 'https://wa.me/923203887279' }, // WhatsApp
-      { label: '+92 320 3887279', link: 'tel:+923203887279' }           // Direct Call
+      { label: '+92 329 4986867', link: 'tel:+923294986867' }           // Direct Call
     ] 
   },
 ].map((group) => (

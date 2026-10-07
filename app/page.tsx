@@ -5,15 +5,16 @@ import { useRouter } from 'next/navigation'
 import Cursor from '@/components/Cursor'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
-import { services, projects } from '@/data/content'
-import type { Project, Service } from '@/data/content'
+// import type { Project } from '@/data/content'
+import projects, { type Project } from '@/data/projects'
+import services, {type Service } from '@/data/services'
 
 const MARQUEE = ['Mobile Apps','Web Platforms','ERP Systems','AI Integration','Flutter','React Native','Offline-first','Cross-Platform','Full Stack']
 
 const STATS = [
   { target: 5,     suffix: '+',  label: 'Products shipped to production', fixed: false },
-  { target: 20700, suffix: '+',  label: 'End users across deployed systems', compact: true, fixed: false },
-  { target: 189,   suffix: '',   label: 'Schools running our software', fixed: false },
+  { target: 35500, suffix: '+',  label: 'End users across deployed systems', compact: true, fixed: false },
+  { target: 250,   suffix: '',   label: 'Schools running our software', fixed: false },
   { target: 24,    suffix: 'h',  label: 'Average response time', fixed: true },
 ]
 
